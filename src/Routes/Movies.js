@@ -26,6 +26,7 @@ export function Movies() {
           title={theId.title}
           overview={theId.overview}
           average={theId.vote_average}
+          genresId={theId.genre_ids}
         />
       ) : null}
       <CardsContainer>

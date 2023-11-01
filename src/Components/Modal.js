@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { genres } from "../api";
 
 const ModalWrapper = styled.div`
   display: flex;
@@ -22,7 +23,9 @@ const Items = styled.div`
   justify-content: space-evenly;
 `;
 
-const BackdropImg = styled.img``;
+const BackdropImg = styled.img`
+  margin: 2em;
+`;
 
 const MovieTitle = styled.div`
   font-weight: 700;
@@ -31,10 +34,24 @@ const MovieTitle = styled.div`
 
 const Overview = styled.div`
   width: 70%;
+  overflow-y: scroll;
 `;
 
 const Average = styled.div`
   width: 0.5em;
+`;
+
+const Genres = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+const Genre = styled.li`
+  width: 70%;
+`;
+const Category = styled.div`
+  border-bottom: 1px solid white;
+  width: 70%;
 `;
 
 export function Modal(props) {
@@ -42,6 +59,9 @@ export function Modal(props) {
   const onClick = () => {
     navigate("/movies");
   };
+  const theGenre = props.genresId.map(
+    (g) => g && genres.find((ggg) => ggg.id === g)
+  );
   return (
     <>
       <ModalWrapper onClick={onClick}>
@@ -54,9 +74,16 @@ export function Modal(props) {
             <br />
             <Average>⭐{props.average}</Average>
           </MovieTitle>
-
+          <Genres>
+            <Category>Genre</Category>
+            {theGenre.map((name) => (
+              <Genre>{name.name}</Genre>
+            ))}
+          </Genres>
           <Overview>
+            Overview
             <br />
+            <hr />
             {props.overview}
           </Overview>
         </Items>
