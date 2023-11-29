@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 const NavContainer = styled.div`
   background-color: #38598b;
@@ -61,14 +60,17 @@ const LoginMessage = styled.div`
   font-weight: 700;
 `;
 
-export function Nav() {
+export function Nav({ loginStatus, isLogin, userName }) {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useState(true);
   const handleClick = (param) => {
     navigate(`/${param}`);
   };
-  const LoginClick = () => {
-    setIsLogin((prev) => !prev);
+  const toLoginClick = () => {
+    navigate("/login");
+  };
+  const toLogoutClick = () => {
+    navigate("/");
+    loginStatus(false);
   };
   return (
     <>
@@ -81,12 +83,12 @@ export function Nav() {
           <LoginWrapper>
             {isLogin ? (
               <>
-                <LoginButton onClick={LoginClick}>로그아웃</LoginButton>
-                <LoginMessage>환영합니다!</LoginMessage>
+                <LoginButton onClick={toLogoutClick}>로그아웃</LoginButton>
+                <LoginMessage>{`${userName}`}님, 환영합니다!</LoginMessage>
               </>
             ) : (
               <>
-                <LoginButton onClick={LoginClick}>로그인</LoginButton>
+                <LoginButton onClick={toLoginClick}>로그인</LoginButton>
                 <LoginMessage>로그인 해주세요!</LoginMessage>
               </>
             )}

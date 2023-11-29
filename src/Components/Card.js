@@ -35,8 +35,9 @@ const Overlay = styled.div`
 export function Card(props) {
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
+
   const onCardClick = () => {
-    navigate(`/movies/${props.id}`);
+    navigate(`/${props.where}/${props.id}`);
   };
   const whileHover = () => {
     setIsVisible(true);

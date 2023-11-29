@@ -56,15 +56,15 @@ const Category = styled.div`
 
 export function Modal(props) {
   const navigate = useNavigate();
-  const onClick = () => {
-    navigate("/movies");
+  const onClick = (where) => {
+    navigate(`/${where}`);
   };
   const theGenre = props.genresId.map(
     (g) => g && genres.find((ggg) => ggg.id === g)
   );
   return (
     <>
-      <ModalWrapper onClick={onClick}>
+      <ModalWrapper onClick={() => onClick(props.where)}>
         <BackdropImg
           src={`https://image.tmdb.org/t/p/w500/${props.backdrop}`}
         />

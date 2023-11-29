@@ -27,16 +27,19 @@ export function Movies() {
           overview={theId.overview}
           average={theId.vote_average}
           genresId={theId.genre_ids}
+          where={"movies"}
         />
       ) : null}
       <CardsContainer>
-        {movies.results.map((movie) => (
+        {movies.results.map((movie, key) => (
           <Card
+            key={key}
             id={movie.id}
             overview={movie.overview}
             title={movie.title}
             average={movie.vote_average}
             poster={movie.poster_path}
+            where={"movies"}
           />
         ))}
       </CardsContainer>
