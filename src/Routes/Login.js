@@ -64,7 +64,7 @@ export function Login({ loginStatus, getUserName }) {
     localStorage.setItem("token", json.result.AccessToken);
     localStorage.setItem("id", json.result.userId);
     navigate("/");
-  } else if (json?.isSuccess == false) {
+  } else if (json?.isSuccess === false) {
     alert("로그인 정보가 일치하지 않습니다.");
     window.location.reload();
   }

@@ -52,7 +52,10 @@ export function Card(props) {
       onMouseOver={whileHover}
     >
       {isVisible ? <Overlay>{props.overview}</Overlay> : null}
-      <img src={`https://image.tmdb.org/t/p/w200/${props.poster}`} />
+      <img
+        alt="image"
+        src={`https://image.tmdb.org/t/p/w200/${props.poster}`}
+      />
       <Items>
         <MovieTitle>{props.title}</MovieTitle>
         <div>⭐{props.average}</div>
