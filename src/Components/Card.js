@@ -53,7 +53,7 @@ export function Card(props) {
     >
       {isVisible ? <Overlay>{props.overview}</Overlay> : null}
       <img
-        alt="image"
+        alt="poster"
         src={`https://image.tmdb.org/t/p/w200/${props.poster}`}
       />
       <Items>
