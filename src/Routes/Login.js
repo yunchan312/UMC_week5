@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { getToken } from "../loginApi";
 import { useNavigate } from "react-router-dom";
@@ -50,7 +50,6 @@ const Explanation = styled.div`
 
 export function Login({ loginStatus, getUserName }) {
   const [json, setJson] = useState({});
-
   const navigate = useNavigate();
 
   const onSubmit = (e) => {
@@ -62,7 +61,12 @@ export function Login({ loginStatus, getUserName }) {
     console.log(json);
     loginStatus(json?.isSuccess);
     getUserName(json?.result.username);
+    localStorage.setItem("token", json.result.AccessToken);
+    localStorage.setItem("id", json.result.userId);
     navigate("/");
+  } else if (json?.isSuccess == false) {
+    alert("로그인 정보가 일치하지 않습니다.");
+    window.location.reload();
   }
 
   return (

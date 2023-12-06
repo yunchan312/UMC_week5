@@ -1,5 +1,4 @@
 export async function getToken(setJson, id, pw) {
-  console.log(id, pw);
   await fetch(`http://localhost:8000/user/login`, {
     method: "POST",
     headers: {
